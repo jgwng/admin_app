@@ -1,3 +1,4 @@
+import 'package:adminapp/components/storage_info_card.dart';
 import 'package:adminapp/constants/constants.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,7 @@ class StorageDetails extends StatelessWidget{
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(defaultPadding),
-      height: 500,
+      height: 640,
       decoration: BoxDecoration(
         color: secondaryColor,
         borderRadius: const BorderRadius.all(Radius.circular(10)),
@@ -49,39 +50,16 @@ class StorageDetails extends StatelessWidget{
                 ],
               )
           ),
-          //StorageInfoCard - 5개 정도 추가하기
-          Container(
-            padding : EdgeInsets.all(defaultPadding),
-            decoration: BoxDecoration(
-                border : Border.all(
-                    width: 2,color: primaryColor.withOpacity(0.15)),
-                borderRadius  : const BorderRadius.all(
-                  Radius.circular(defaultPadding),
-                )
+          ListView.builder(
+            itemCount: 4,
+            itemBuilder: (ctx,i) => StorageInfoCard(
+              svgSrc: "assets/icons/${storageImageAddress[i]}.svg",
+              title: storageTitle[i],
+              amountOfFiles: storageAmount[i],
+              numOfFiles: storageFiles[i],
             ),
-            child : Row(
-              children: [
-                SizedBox(
-                  height :20,
-                  width: 20,
-                  child: Image.asset(''),
-                ),
-                Expanded(
-                  child:
-                  Padding(
-                      padding: EdgeInsets.symmetric(horizontal: defaultPadding),
-                      child : Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('Document FIles',maxLines: 1,overflow: TextOverflow.ellipsis,),
-                          Text('1329 Files',style: Theme.of(context).textTheme.caption!.copyWith(color: Colors.white70),)
-                        ],
-                      )
-                  ),),
-                Text('1.3GB')
-              ],
-            ),
-          )
+            shrinkWrap: true,
+          ),
         ],
       ),
 

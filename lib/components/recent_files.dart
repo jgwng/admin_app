@@ -54,7 +54,7 @@ DataRow recentFileDataRow(RecentFile fileInfo,BuildContext context){
 
         ),
         DataCell(Text(fileInfo.date!,style: Theme.of(context).textTheme.subtitle2,)),
-        DataCell(Text('FileInfo.size',style: Theme.of(context).textTheme.subtitle2))
+        DataCell(Text(fileInfo.size!,style: Theme.of(context).textTheme.subtitle2))
       ]
   );
 }
